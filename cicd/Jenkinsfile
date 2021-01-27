@@ -1,7 +1,7 @@
 node {
     def built_img = ''
     stage('Checkout git repo') {
-      git branch: 'master', url: params.git_repo
+      git branch: 'main', url: params.git_repo
     }
     stage('Build and push Docker image') {
       sh(script: "docker login ${registry_url} -u ${acr_username} -p ${acr_password}", returnStdout: true)
