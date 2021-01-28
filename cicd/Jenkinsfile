@@ -9,7 +9,7 @@ node {
       //${registry_url}
 }
       sh(script: "docker build -t ${registry_url}/customersapi:${BUILD_NUMBER} -f src/CustomersAPI/Dockerfile .", returnStdout: true)
-      (script: "docker build -t ${registry_url}/customersmvc:${BUILD_NUMBER} -f src/CustomersMVC/Dockerfile .", returnStdout: true)
+      sh(script: "docker build -t ${registry_url}/customersmvc:${BUILD_NUMBER} -f src/CustomersMVC/Dockerfile .", returnStdout: true)
       sh(script: "docker push ${registry_url}/customersmvc:${BUILD_NUMBER}", returnStdout: true)
     }
     stage('Unit Tests') {
