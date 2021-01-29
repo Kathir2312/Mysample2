@@ -1,0 +1,20 @@
+FROM keaz/jenkins-slave:latest
+
+LABEL MAINTAINER="Kathiresan Palanivel"
+LABEL Description="This is a base image, which allows connecting Jenkins agents via JNLP protocols, Copied From https://raw.githubusercontent.com/keaz/jenkins/master/slave/Dockerfile"
+
+#USER root
+#RUN apt-get update
+
+#RUN apt-get update && apt-get install -y apt-transport-https curl
+#RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add 
+#RUN apt-get update
+#RUN apt-get install -y kubectl
+
+RUN apt-get update && apt-get install -y apt-transport-https gnupg2 curl
+RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg |  apt-key add -
+RUN echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
+RUN apt-get update
+RUN apt-get install -y kubectl
+
+ENTRYPOINT ["jenkins-agent"]
