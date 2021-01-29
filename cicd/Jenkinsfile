@@ -5,9 +5,9 @@ node {
     }
     stage('Build and push Docker image') {
       withCredentials([string(credentialsId: 'mydockerpwd', variable: 'mydockercredp')]) {
-      sh(script: "docker login -u ${acr_username} -p ${acr_password}", returnStdout: true)
-      //${registry_url}
-}
+      sh(script: "docker login -u ${acr_username} -p ${acrmydockercredp_password}", returnStdout: true)
+      //${registry_url}//${acr_password}
+        }
       //sh(script: "docker build -t ${registry_url}/jenkins-k8s-slave:latest -f cicd/jenkinsslave.docker .", returnStdout: true)
       sh(script: "docker build -t ${registry_url}/customersapi:${BUILD_NUMBER} -f src/CustomersAPI/Dockerfile .", returnStdout: true)
       sh(script: "docker build -t ${registry_url}/customersmvc:${BUILD_NUMBER} -f src/CustomersMVC/Dockerfile .", returnStdout: true)
@@ -25,7 +25,7 @@ node {
             )
     }
     stage('Deploy into k8s') {
-      //sh(script: "cat cicd/k9s.yaml | sed -e 's/build_number/${BUILD_NUMBER}/g' -e 's/YourACRName/${acr_username}/g' | kubectl apply -f -", returnStdout: true)
-      sh(script: "cat cicd/k9s.yaml | kubectl apply -f -", returnStdout: true)
+      sh(script: "cat cicd/k9s.yaml | sed -e 's/build_number/${BUILD_NUMBER}/g' -e 's/YourACRName/${acr_username}/g' | kubectl apply -f -", returnStdout: true)
+      //sh(script: "cat cicd/k9s.yaml | kubectl apply -f -", returnStdout: true)
     }
 }
