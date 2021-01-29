@@ -25,6 +25,7 @@ node {
             )
     }
     stage('Deploy into k8s') {
-      sh(script: "cat cicd/k9s.yaml | sed -e 's/build_number/${BUILD_NUMBER}/g' -e 's/YourACRName/${acr_username}/g' | kubectl apply -f -", returnStdout: true)
+      //sh(script: "cat cicd/k9s.yaml | sed -e 's/build_number/${BUILD_NUMBER}/g' -e 's/YourACRName/${acr_username}/g' | kubectl apply -f -", returnStdout: true)
+      sh(script: "cat cicd/k9s.yaml | kubectl apply -f -", returnStdout: true)
     }
 }
