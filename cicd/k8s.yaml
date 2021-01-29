@@ -7,6 +7,10 @@ kind: Deployment
 metadata:
   name: customersapi
 spec:
+  selector:
+    matchLabels:
+      app: aspnetcoredemo
+      component: customersapi
   replicas: 1
   # The template of a deployment specification is a pod specification
   template:
@@ -47,6 +51,10 @@ kind: Deployment
 metadata:
   name: customersmvc
 spec:
+  selector:
+    matchLabels:
+      app: aspnetcoredemo
+      component: customersmvc
   replicas: 1
   template:
     metadata:
