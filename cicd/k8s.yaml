@@ -34,12 +34,12 @@ spec:
         # Environment variables are the most common way of specifying configuration
         # for Kubernetes-hosted services. As shown here, the config values can come from
         # Kubernetes' secret store or (as shown below) can be hardcoded
-        env:
-        - name: ApplicationInsights__InstrumentationKey
-          valueFrom:
-            secretKeyRef:
-              name: aspnetcoredemo-secrets
-              key: AppInsightsKey
+        #env:
+        #- name: ApplicationInsights__InstrumentationKey
+        #  valueFrom:
+        #    secretKeyRef:
+        #      name: aspnetcoredemo-secrets
+        #      key: AppInsightsKey
       # An image pull secret is the secret used to connect with a private Docker registry
       imagePullSecrets:
       - name: regsecret
@@ -75,11 +75,11 @@ spec:
         # CustomersAPIService__Url to use the CustomersApi service's name
         - name: CustomersAPIService__Url
           value: http://customersapiservice:5000
-        - name: ApplicationInsights__InstrumentationKey
-          valueFrom:
-            secretKeyRef:
-              name: aspnetcoredemo-secrets
-              key: AppInsightsKey
+        #- name: ApplicationInsights__InstrumentationKey
+        #  valueFrom:
+        #    secretKeyRef:
+        #      name: aspnetcoredemo-secrets
+        #      key: AppInsightsKey
 
 ---
 # Kubernetes services are definitions of how pods are exposed for network
