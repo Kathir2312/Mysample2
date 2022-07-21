@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/runtime:2.2 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM mcr.microsoft.com/dotnet/sdk:2.1 AS build
 WORKDIR /src
 COPY src/CustomersAPI/CustomersAPI.csproj src/CustomersAPI/
 COPY src/CustomersDataModels/CustomersDataModels.csproj src/CustomersDataModels/
